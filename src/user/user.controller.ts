@@ -10,7 +10,7 @@ export class UserController {
 
   @Roles('admin')
   @Post('save')
-  save(@Res() res, @Req() req, @User() saveUserDto: SaveUserDto) {
+  save(@Res() res, @Req() req, @Body() saveUserDto: SaveUserDto) {
     this.userService.save(saveUserDto);
     res.status(HttpStatus.OK).send(saveUserDto);
   }
@@ -25,8 +25,9 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  update() {
-
+  @Post('update')
+  update(@Body() saveUserDto: SaveUserDto) {
+    return saveUserDto;
   }
 
   login() {
